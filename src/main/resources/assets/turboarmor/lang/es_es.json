@@ -1,0 +1,8 @@
+{
+  "item.turboarmor.turbo_helmet": "Casco Turbo",
+  "item.turboarmor.turbo_chestplate": "Pechera Turbo",
+  "item.turboarmor.turbo_leggings": "Pantalones Turbo",
+  "item.turboarmor.turbo_boots": "Botas Turbo",
+  "tooltip.turboarmor.turbo": "Miniturbo",
+  "tooltip.turboarmor.turbo2": "En el aire: agáchate + mantén el salto. Caída de pluma mientras dure."
+}
