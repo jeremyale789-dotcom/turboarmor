@@ -1,5 +1,6 @@
 package com.turboarmor.client;
 
+import com.turboarmor.TurboArmor;
 import com.turboarmor.TurboArmorItem;
 import com.turboarmor.TurboChestplateItem;
 import com.turboarmor.TurboEnergy;
@@ -10,8 +11,10 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.gui.overlay.IGuiOverlay;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 /**
  * Interfaz de la armadura:
@@ -19,12 +22,25 @@ import net.minecraftforge.client.gui.overlay.IGuiOverlay;
  *  - Muestra la durabilidad que le queda a cada pieza Turbo que llevas puesta.
  *  - La barra del turbo (máx. 10, consumo 0.1/s) solo aparece si además llevas la PECHERA Turbo.
  */
-public class TurboHud implements IGuiOverlay {
+@Mod.EventBusSubscriber(modid = TurboArmor.ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+public class TurboHud {
     private static final EquipmentSlot[] SLOTS = {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
     private static final int X = 6, Y = 6, W = 150;
 
-    @Override
-    public void render(ForgeGui gui, GuiGraphics g, float partialTick, int screenWidth, int screenHeight) {
+    /** Se dibuja al final de cada fotograma, encima del juego (solo sin pantallas abiertas). */
+    @SubscribeEvent
+    public static void onRenderTick(TickEvent.RenderTickEvent e) {
+        if (e.phase != TickEvent.Phase.END) return;
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player == null || mc.level == null || mc.screen != null || mc.options.hideGui) return;
+        if (!(mc.player.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof TurboArmorItem)) return;
+        GuiGraphics g = new GuiGraphics(mc, mc.renderBuffers().bufferSource());
+        g.pose().translate(0.0f, 0.0f, -2000.0f);     // el plano de recorte de la interfaz empieza en z = -1000
+        draw(g);
+        g.flush();
+    }
+
+    private static void draw(GuiGraphics g) {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer p = mc.player;
         if (p == null || mc.options.hideGui) return;
