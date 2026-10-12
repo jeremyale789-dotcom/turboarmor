@@ -13,10 +13,10 @@ public final class TurboModels {
     public static HumanoidModel<?> forSlot(EquipmentSlot slot) {
         TurboArmorModel m;
         if (slot == EquipmentSlot.LEGS) {
-            if (inner == null) inner = new TurboArmorModel(Minecraft.getInstance().getEntityModelSet().bakeLayer(TurboArmorModel.INNER));
+            if (inner == null) inner = new TurboArmorModel(Minecraft.getInstance().getEntityModels().bakeLayer(TurboArmorModel.INNER));
             m = inner;
         } else {
-            if (outer == null) outer = new TurboArmorModel(Minecraft.getInstance().getEntityModelSet().bakeLayer(TurboArmorModel.OUTER));
+            if (outer == null) outer = new TurboArmorModel(Minecraft.getInstance().getEntityModels().bakeLayer(TurboArmorModel.OUTER));
             m = outer;
         }
         m.setVisibility(slot);
