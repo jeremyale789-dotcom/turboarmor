@@ -60,13 +60,13 @@ public class TurboArmor {
     private static Holder<ArmorMaterial> holder(RegistryObject<ArmorMaterial> o) { return o.getHolder().orElseThrow(); }
 
     public static final RegistryObject<Item> HELMET = ITEMS.register("turbo_helmet",
-            () -> new ArmorItem(holder(M_HELMET), ArmorItem.Type.HELMET, new Item.Properties().durability(1014)));
+            () -> new TurboArmorItem(holder(M_HELMET), ArmorItem.Type.HELMET, new Item.Properties().durability(1014)));
     public static final RegistryObject<Item> CHESTPLATE = ITEMS.register("turbo_chestplate",
             () -> new TurboChestplateItem(holder(M_CHEST), new Item.Properties().durability(1432)));
     public static final RegistryObject<Item> LEGGINGS = ITEMS.register("turbo_leggings",
-            () -> new ArmorItem(holder(M_LEGS), ArmorItem.Type.LEGGINGS, new Item.Properties().durability(1304)));
+            () -> new TurboArmorItem(holder(M_LEGS), ArmorItem.Type.LEGGINGS, new Item.Properties().durability(1304)));
     public static final RegistryObject<Item> BOOTS = ITEMS.register("turbo_boots",
-            () -> new ArmorItem(holder(M_BOOTS), ArmorItem.Type.BOOTS, new Item.Properties().durability(1144)));
+            () -> new TurboArmorItem(holder(M_BOOTS), ArmorItem.Type.BOOTS, new Item.Properties().durability(1144)));
 
     public TurboArmor() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

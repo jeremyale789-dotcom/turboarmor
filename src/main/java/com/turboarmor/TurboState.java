@@ -28,7 +28,8 @@ public final class TurboState {
         Long until = ACTIVE_UNTIL.get(p.getUUID());
         if (until == null) return false;
         if (until < p.level().getGameTime()) { ACTIVE_UNTIL.remove(p.getUUID()); return false; }
-        return wearsChestplate(p);
+        if (!wearsChestplate(p)) return false;
+        return !(p instanceof ServerPlayer sp) || TurboEnergy.get(sp) > 0;
     }
 
     public static void clear(UUID id) { ACTIVE_UNTIL.remove(id); }

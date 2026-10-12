@@ -4,5 +4,9 @@
   "item.turboarmor.turbo_leggings": "Turbo Leggings",
   "item.turboarmor.turbo_boots": "Turbo Boots",
   "tooltip.turboarmor.turbo": "Mini Turbo",
-  "tooltip.turboarmor.turbo2": "Airborne: sneak + hold jump. Feather falling while active."
+  "tooltip.turboarmor.turbo2": "Airborne: sneak + hold jump. Feather falling while active.",
+  "hud.turboarmor.title": "TURBO SUIT",
+  "hud.turboarmor.turbo": "TURBO",
+  "hud.turboarmor.active": "ACTIVE!",
+  "tooltip.turboarmor.energy": "Energy: max 10 · drain 0.1/s"
 }

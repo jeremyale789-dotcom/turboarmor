@@ -22,5 +22,10 @@ public final class TurboNet {
                 .decoder(TurboPacket::decode)
                 .consumerMainThread(TurboPacket::handle)
                 .add();
+        CHANNEL.messageBuilder(TurboEnergyPacket.class, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(TurboEnergyPacket::encode)
+                .decoder(TurboEnergyPacket::decode)
+                .consumerMainThread(TurboEnergyPacket::handle)
+                .add();
     }
 }

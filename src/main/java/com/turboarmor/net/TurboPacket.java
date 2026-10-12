@@ -1,5 +1,6 @@
 package com.turboarmor.net;
 
+import com.turboarmor.TurboEnergy;
 import com.turboarmor.TurboState;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
@@ -13,7 +14,7 @@ public record TurboPacket(boolean active) {
 
     public static void handle(TurboPacket msg, CustomPayloadEvent.Context ctx) {
         ServerPlayer p = ctx.getSender();
-        if (p != null && msg.active() && TurboState.wearsChestplate(p)) TurboState.mark(p);
+        if (p != null && msg.active() && TurboState.wearsChestplate(p) && TurboEnergy.get(p) > 0) TurboState.mark(p);
         ctx.setPacketHandled(true);
     }
 }
