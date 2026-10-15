@@ -22,8 +22,8 @@ import net.minecraftforge.network.PacketDistributor;
 @Mod.EventBusSubscriber(modid = TurboArmor.ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class TurboClient {
     private static final double MAX_FALL_SPEED = -0.12;   // velocidad máxima de caída con el turbo
-    private static final double THRUST = 0.045;           // empuje horizontal por tick
-    private static final double MAX_HORIZONTAL = 0.55;    // velocidad horizontal máxima
+    private static final double THRUST = 0.10;            // empuje horizontal por tick (el doble que antes)
+    private static final double MAX_HORIZONTAL = 1.15;    // velocidad horizontal máxima (el doble que antes)
     private static int sendCooldown;
     /** Para el HUD: ¿el turbo está activo ahora mismo? */
     public static volatile boolean active;

@@ -8,5 +8,9 @@
   "hud.turboarmor.title": "TURBO SUIT",
   "hud.turboarmor.turbo": "TURBO",
   "hud.turboarmor.active": "¡ACTIVO!",
-  "tooltip.turboarmor.energy": "Energía: máx. 10 · consumo 0.1/s"
+  "tooltip.turboarmor.energy": "Energía: máx. 10 · consumo 0.3/s",
+  "key.turboarmor.toggle_ui": "Mostrar/ocultar interfaz del casco (con CTRL)",
+  "key.categories.turboarmor": "Turbo Armor",
+  "hud.turboarmor.ui_on": "Interfaz del casco: ACTIVADA",
+  "hud.turboarmor.ui_off": "Interfaz del casco: DESACTIVADA"
 }

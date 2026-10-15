@@ -19,7 +19,7 @@ import net.minecraft.world.entity.LivingEntity;
  *  - Casco: cúpula azul, orejas grandes con interior dorado, 3 púas largas hacia atrás, ceja negra con luces rojas
  *    y CARA ABIERTA (se ve tu skin; no lleva nariz/hocico).
  *  - Pechera: torso redondeado, turbina del pecho (aro dorado + plata + centro negro), collar con púa, hombros de
- *    esfera plateada con púa, columna con articulaciones, brazos finos (se ve la skin) con codos, antebrazos gruesos,
+ *    esfera plateada con púa, TURBINA CÓNICA en la espalda (de ahí sale el turbo), brazos finos (se ve la skin) con codos, antebrazos gruesos,
  *    puños dorados y guantes negros con garras largas. SIN mochila.
  *  - Pantalones: caderas plateadas, muslos finos (se ve la skin), rodilleras plateadas grandes y espinilleras.
  *  - Botas: zapatos rojos grandes con puntera larga, franja blanca, suela blanca y anillo plateado.
@@ -141,9 +141,20 @@ public class TurboArmorModel extends HumanoidModel<LivingEntity> {
         box(body, SILVER, -4.8f, -2.4f, -3.4f, 9.6f, 1.6f, 6.8f);
         chain(body, false, SILVER, 0f, -0.6f, -4.3f, 0f, 0.5f, -0.9f, 3, 1.8f, 1.8f, 2.4f, 0.65f);
 
-        // cintura y columna con articulaciones (sin mochila)
+        // cintura
         box(body, SILVER, -4.7f, 9.8f, -3.3f, 9.4f, 1.2f, 6.6f);
-        for (int i = 0; i < 3; i++) box(body, SILVER, -1.1f, 1.8f + i * 2.6f, 3.9f, 2.2f, 1.4f, 1.2f);
+
+        // TURBINA DE LA ESPALDA (de aquí sale el turbo): cono escalonado con aro dorado, dientes plateados y tobera negra
+        box(body, YELLOW, -4.0f, 2.0f, 3.9f, 8.0f, 8.0f, 1.2f);          // aro dorado de la base
+        box(body, SILVER, -3.2f, 2.8f, 5.1f, 6.4f, 6.4f, 1.2f);          // anillo plateado
+        for (int k = 0; k < 8; k++) {                                     // dientes alrededor del anillo
+            double ang = k * Math.PI / 4.0;
+            float cx = (float) (Math.cos(ang) * 3.9), cy = 6.0f + (float) (Math.sin(ang) * 3.9);
+            box(body, SILVER, cx - 0.55f, cy - 0.55f, 5.4f, 1.1f, 1.1f, 1.6f);
+        }
+        box(body, YELLOW, -2.4f, 3.6f, 6.3f, 4.8f, 4.8f, 1.0f);          // segundo escalón dorado
+        box(body, BLACK, -1.6f, 4.4f, 7.3f, 3.2f, 3.2f, 0.9f);           // tobera
+        box(body, ORANGE, -0.8f, 5.2f, 8.1f, 1.6f, 1.6f, 0.3f);          // brillo del fondo
 
         arm(rArm, false);
         arm(lArm, true);

@@ -14,8 +14,8 @@ import net.minecraftforge.network.PacketDistributor;
 public final class TurboEnergy {
     /** Almacenamiento máximo: 10.0 */
     public static final int MAX = 10_000;
-    /** Consumo mientras el turbo está activo: 0.1 por segundo. */
-    public static final int DRAIN_PER_SECOND = 100;
+    /** Consumo mientras el turbo está activo: 0.3 por segundo. */
+    public static final int DRAIN_PER_SECOND = 300;
     /** Recarga en el suelo (con la pechera puesta): 0.25 por segundo. (Valor elegido por mí: cámbialo aquí.) */
     public static final int RECHARGE_PER_SECOND = 250;
 

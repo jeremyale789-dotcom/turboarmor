@@ -8,5 +8,9 @@
   "hud.turboarmor.title": "TURBO SUIT",
   "hud.turboarmor.turbo": "TURBO",
   "hud.turboarmor.active": "ACTIVE!",
-  "tooltip.turboarmor.energy": "Energy: max 10 · drain 0.1/s"
+  "tooltip.turboarmor.energy": "Energy: max 10 · drain 0.3/s",
+  "key.turboarmor.toggle_ui": "Show/hide helmet interface (with CTRL)",
+  "key.categories.turboarmor": "Turbo Armor",
+  "hud.turboarmor.ui_on": "Helmet interface: ON",
+  "hud.turboarmor.ui_off": "Helmet interface: OFF"
 }

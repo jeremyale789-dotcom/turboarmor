@@ -29,7 +29,7 @@ public class TurboHud {
     public static void onRenderTick(TickEvent.RenderTickEvent e) {
         if (e.phase != TickEvent.Phase.END) return;
         Minecraft mc = Minecraft.getInstance();
-        if (mc.player == null || mc.level == null) return;
+        if (mc.player == null || mc.level == null || !TurboConfig.uiEnabled) return;
         boolean helmet = mc.player.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof TurboArmorItem;
         boolean hud = helmet && mc.screen == null && !mc.options.hideGui;
         boolean intro = TurboIntro.active();
@@ -38,7 +38,7 @@ public class TurboHud {
         GuiGraphics g = new GuiGraphics(mc, mc.renderBuffers().bufferSource());
         g.pose().translate(0.0f, 0.0f, -2000.0f);     // el plano de recorte de la interfaz empieza en z = -1000
         int w = mc.getWindow().getGuiScaledWidth(), h = mc.getWindow().getGuiScaledHeight();
-        if (hud) draw(g, mc, w, h);
+        if (hud) { TurboIntro.drawFilter(g, w, h); draw(g, mc, w, h); }
         if (intro) TurboIntro.render(g, w, h);
         g.flush();
     }
