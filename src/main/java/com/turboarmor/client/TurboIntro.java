@@ -73,6 +73,7 @@ public final class TurboIntro {
                 if (!on) start = -1;
                 mc.player.displayClientMessage(Component.translatable(on ? "hud.turboarmor.ui_on" : "hud.turboarmor.ui_off"), true);
                 mc.player.playSound(on ? SoundEvents.BEACON_ACTIVATE : SoundEvents.BEACON_DEACTIVATE, 0.5f, 1.5f);
+                if (on && worn) begin(mc);          // al volver a activarla con el casco puesto: arranque + filtro + memes otra vez
             }
         }
 

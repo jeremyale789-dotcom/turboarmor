@@ -16,8 +16,8 @@ public final class TurboEnergy {
     public static final int MAX = 10_000;
     /** Consumo mientras el turbo está activo: 0.3 por segundo. */
     public static final int DRAIN_PER_SECOND = 300;
-    /** Recarga en el suelo (con la pechera puesta): 0.25 por segundo. (Valor elegido por mí: cámbialo aquí.) */
-    public static final int RECHARGE_PER_SECOND = 250;
+    /** Energía que da un Combustible Turbo: 5.0. (La ÚNICA forma de recargar es el combustible.) */
+    public static final int FUEL_ENERGY = 5_000;
 
     private static final String KEY = "turboarmor_energy";
 

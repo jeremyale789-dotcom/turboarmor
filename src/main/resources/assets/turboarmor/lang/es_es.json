@@ -12,5 +12,11 @@
   "key.turboarmor.toggle_ui": "Mostrar/ocultar interfaz del casco (con CTRL)",
   "key.categories.turboarmor": "Turbo Armor",
   "hud.turboarmor.ui_on": "Interfaz del casco: ACTIVADA",
-  "hud.turboarmor.ui_off": "Interfaz del casco: DESACTIVADA"
+  "hud.turboarmor.ui_off": "Interfaz del casco: DESACTIVADA",
+  "item.turboarmor.empty_capsule": "Cápsula vacía",
+  "item.turboarmor.turbo_fuel": "Combustible Turbo",
+  "tooltip.turboarmor.fuel": "Recarga la energía de la pechera Turbo (+5.0).",
+  "tooltip.turboarmor.fuel2": "Mantén clic derecho con la pechera puesta. Devuelve la cápsula vacía.",
+  "msg.turboarmor.need_chest": "Necesitas la Pechera Turbo puesta",
+  "msg.turboarmor.full": "La energía del turbo ya está llena"
 }

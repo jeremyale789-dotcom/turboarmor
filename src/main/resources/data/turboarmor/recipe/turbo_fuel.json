@@ -1,0 +1,27 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "gelmod"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "gelmod:pink_slime_fragment"
+    },
+    "C": {
+      "item": "turboarmor:empty_capsule"
+    }
+  },
+  "pattern": [
+    " F ",
+    "FCF",
+    " F "
+  ],
+  "result": {
+    "id": "turboarmor:turbo_fuel",
+    "count": 1
+  }
+}

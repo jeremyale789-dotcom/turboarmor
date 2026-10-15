@@ -12,5 +12,11 @@
   "key.turboarmor.toggle_ui": "Show/hide helmet interface (with CTRL)",
   "key.categories.turboarmor": "Turbo Armor",
   "hud.turboarmor.ui_on": "Helmet interface: ON",
-  "hud.turboarmor.ui_off": "Helmet interface: OFF"
+  "hud.turboarmor.ui_off": "Helmet interface: OFF",
+  "item.turboarmor.empty_capsule": "Empty Capsule",
+  "item.turboarmor.turbo_fuel": "Turbo Fuel",
+  "tooltip.turboarmor.fuel": "Recharges the Turbo Chestplate (+5.0).",
+  "tooltip.turboarmor.fuel2": "Hold right click while wearing the chestplate. Returns the empty capsule.",
+  "msg.turboarmor.need_chest": "You need the Turbo Chestplate equipped",
+  "msg.turboarmor.full": "Turbo energy is already full"
 }

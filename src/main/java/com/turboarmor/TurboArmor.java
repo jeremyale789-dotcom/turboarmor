@@ -68,6 +68,13 @@ public class TurboArmor {
     public static final RegistryObject<Item> BOOTS = ITEMS.register("turbo_boots",
             () -> new TurboArmorItem(holder(M_BOOTS), ArmorItem.Type.BOOTS, new Item.Properties().durability(1144)));
 
+    /** Cápsula vacía (recipiente). Se llena con 4 fragmentos de slime rosa para hacer el Combustible Turbo. */
+    public static final RegistryObject<Item> CAPSULE = ITEMS.register("empty_capsule",
+            () -> new Item(new Item.Properties().stacksTo(16)));
+    /** Combustible Turbo: única forma de recargar la energía de la pechera. */
+    public static final RegistryObject<Item> FUEL = ITEMS.register("turbo_fuel",
+            () -> new TurboFuelItem(new Item.Properties().stacksTo(16)));
+
     public TurboArmor() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         MATERIALS.register(bus);
@@ -79,6 +86,7 @@ public class TurboArmor {
     private void tabs(BuildCreativeModeTabContentsEvent e) {
         if (e.getTabKey() == CreativeModeTabs.COMBAT) {
             e.accept(HELMET.get()); e.accept(CHESTPLATE.get()); e.accept(LEGGINGS.get()); e.accept(BOOTS.get());
+            e.accept(CAPSULE.get()); e.accept(FUEL.get());
         }
     }
 }
