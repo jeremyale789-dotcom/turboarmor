@@ -55,6 +55,44 @@ public class TurboEvents {
         }
     }
 
+    private static double rnd(RandomSource r, double a) { return (r.nextDouble() - 0.5) * 2.0 * a; }
+
+    /** Envía una partícula con velocidad solo a los OTROS jugadores (el dueño ya la ve generada en su propio cliente). */
+    private static void emit(ServerLevel sl, Player owner, net.minecraft.core.particles.ParticleOptions type,
+                             double x, double y, double z, double vx, double vy, double vz) {
+        for (ServerPlayer o : sl.players()) {
+            if (o == owner || o.distanceToSqr(x, y, z) > 4096.0) continue;
+            sl.sendParticles(o, type, false, x, y, z, 0, vx, vy, vz, 1.0);
+        }
+    }
+
+    /** Chorro de la turbina de la espalda tal como lo ven los demás jugadores + sonidos para todos. */
+    private static void jets(ServerLevel sl, Player p, boolean ignition) {
+        double yaw = Math.toRadians(p.getYRot());
+        double bx = Math.sin(yaw), bz = -Math.cos(yaw);
+        double nx = p.getX() + bx * 0.55, ny = p.getY() + p.getBbHeight() * 0.62, nz = p.getZ() + bz * 0.55;
+        RandomSource r = p.getRandom();
+
+        for (int i = 0; i < 2; i++) {
+            emit(sl, p, ParticleTypes.SOUL_FIRE_FLAME, nx, ny, nz, bx * 0.35 + rnd(r, 0.04), rnd(r, 0.03), bz * 0.35 + rnd(r, 0.04));
+            emit(sl, p, ParticleTypes.FLAME, nx, ny, nz, bx * 0.22 + rnd(r, 0.06), rnd(r, 0.05), bz * 0.22 + rnd(r, 0.06));
+        }
+        emit(sl, p, ParticleTypes.END_ROD, nx, ny, nz, bx * 0.55, rnd(r, 0.02), bz * 0.55);
+        if (p.tickCount % 2 == 0) emit(sl, p, ParticleTypes.CLOUD, nx, ny, nz, bx * 0.12 + rnd(r, 0.03), rnd(r, 0.02), bz * 0.12 + rnd(r, 0.03));
+        if (p.tickCount % 3 == 0) emit(sl, p, ParticleTypes.ELECTRIC_SPARK, nx, ny, nz, rnd(r, 0.4), rnd(r, 0.4), rnd(r, 0.4));
+        if (p.tickCount % 5 == 0) {
+            sl.playSound(null, p.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.35f, 0.7f);
+        }
+        if (ignition) {
+            for (int i = 0; i < 28; i++) {
+                emit(sl, p, i % 2 == 0 ? ParticleTypes.FLAME : ParticleTypes.CLOUD, nx, ny, nz,
+                        bx * 0.6 + rnd(r, 0.25), rnd(r, 0.25), bz * 0.6 + rnd(r, 0.25));
+            }
+            sl.playSound(null, p.blockPosition(), SoundEvents.FIREWORK_ROCKET_LAUNCH, SoundSource.PLAYERS, 0.8f, 0.9f);
+            sl.playSound(null, p.blockPosition(), SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS, 0.5f, 1.4f);
+        }
+    }
+
     @SubscribeEvent
     public static void onLogin(PlayerEvent.PlayerLoggedInEvent e) {
         if (e.getEntity() instanceof ServerPlayer sp) TurboEnergy.sync(sp);
