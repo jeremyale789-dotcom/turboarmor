@@ -13,10 +13,14 @@
   "key.categories.turboarmor": "Turbo Armor",
   "hud.turboarmor.ui_on": "Helmet interface: ON",
   "hud.turboarmor.ui_off": "Helmet interface: OFF",
-  "item.turboarmor.empty_capsule": "Empty Capsule",
+  "item.turboarmor.empty_capsule": "Empty Flask",
   "item.turboarmor.turbo_fuel": "Turbo Fuel",
-  "tooltip.turboarmor.fuel": "Recharges the Turbo Chestplate (+5.0).",
-  "tooltip.turboarmor.fuel2": "Hold right click while wearing the chestplate. Returns the empty capsule.",
+  "tooltip.turboarmor.fuel": "Adds +5.0 energy to the Turbo Chestplate.",
+  "tooltip.turboarmor.fuel2": "Put it in the crafting table with the chestplate. The flask is lost.",
   "msg.turboarmor.need_chest": "You need the Turbo Chestplate equipped",
-  "msg.turboarmor.full": "Turbo energy is already full"
+  "msg.turboarmor.full": "Turbo energy is already full",
+  "item.turboarmor.empty_capsule_diamond": "Empty Diamond Flask",
+  "item.turboarmor.turbo_fuel_diamond": "Diamond Turbo Fuel",
+  "tooltip.turboarmor.fuel_full": "FULLY recharges the Turbo Chestplate.",
+  "tooltip.turboarmor.pending": "Charge ready: +%s (applied when you wear it)"
 }

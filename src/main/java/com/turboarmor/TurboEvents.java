@@ -6,7 +6,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -47,6 +49,19 @@ public class TurboEvents {
         }
 
         if (p.tickCount % STEP != 0) return;
+
+        // carga traída de la mesa de crafteo: pasa a la energía del jugador
+        ItemStack chestStack = p.getItemBySlot(EquipmentSlot.CHEST);
+        int pending = TurboEnergy.getPending(chestStack);
+        if (pending > 0) {
+            TurboEnergy.setPending(chestStack, 0);
+            TurboEnergy.set(p, TurboEnergy.get(p) + pending);
+            if (p.level() instanceof ServerLevel sl) {
+                sl.playSound(null, p.blockPosition(), SoundEvents.BEACON_POWER_SELECT, SoundSource.PLAYERS, 0.8f, 1.5f);
+                sl.sendParticles(ParticleTypes.ELECTRIC_SPARK, p.getX(), p.getY() + 1.0, p.getZ(), 24, 0.4, 0.6, 0.4, 0.3);
+            }
+        }
+
         int energy = TurboEnergy.get(p);
         if (active) {
             energy -= TurboEnergy.DRAIN_PER_SECOND * STEP / 20;          // 0.3 por segundo

@@ -11,6 +11,8 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -40,6 +42,11 @@ public class TurboArmor {
 
     public static final DeferredRegister<ArmorMaterial> MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, ID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ID);
+    public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, ID);
+
+    /** Receta de recarga en la mesa de crafteo (pechera + combustible). */
+    public static final RegistryObject<RecipeSerializer<?>> RECHARGE_SERIALIZER = SERIALIZERS.register("recharge",
+            () -> new SimpleCraftingRecipeSerializer<>(TurboRechargeRecipe::new));
 
     private static RegistryObject<ArmorMaterial> material(String name, ArmorItem.Type type, int defense, float toughness, float knockback) {
         return MATERIALS.register(name, () -> {
@@ -68,17 +75,22 @@ public class TurboArmor {
     public static final RegistryObject<Item> BOOTS = ITEMS.register("turbo_boots",
             () -> new TurboArmorItem(holder(M_BOOTS), ArmorItem.Type.BOOTS, new Item.Properties().durability(1144)));
 
-    /** Cápsula vacía (recipiente). Se llena con 4 fragmentos de slime rosa para hacer el Combustible Turbo. */
+    /** Frasco vacío de hierro / de diamante (se llenan con fragmentos de slime rosa). */
     public static final RegistryObject<Item> CAPSULE = ITEMS.register("empty_capsule",
             () -> new Item(new Item.Properties().stacksTo(16)));
-    /** Combustible Turbo: única forma de recargar la energía de la pechera. */
+    public static final RegistryObject<Item> CAPSULE_DIAMOND = ITEMS.register("empty_capsule_diamond",
+            () -> new Item(new Item.Properties().stacksTo(16)));
+    /** Combustible: hierro = +5.0 de energía; diamante = recarga completa. Se usa en la mesa de crafteo con la pechera. */
     public static final RegistryObject<Item> FUEL = ITEMS.register("turbo_fuel",
-            () -> new TurboFuelItem(new Item.Properties().stacksTo(16)));
+            () -> new TurboFuelItem(new Item.Properties().stacksTo(16), false));
+    public static final RegistryObject<Item> FUEL_DIAMOND = ITEMS.register("turbo_fuel_diamond",
+            () -> new TurboFuelItem(new Item.Properties().stacksTo(16), true));
 
     public TurboArmor() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         MATERIALS.register(bus);
         ITEMS.register(bus);
+        SERIALIZERS.register(bus);
         bus.addListener(this::tabs);
         TurboNet.init();
     }
@@ -86,7 +98,7 @@ public class TurboArmor {
     private void tabs(BuildCreativeModeTabContentsEvent e) {
         if (e.getTabKey() == CreativeModeTabs.COMBAT) {
             e.accept(HELMET.get()); e.accept(CHESTPLATE.get()); e.accept(LEGGINGS.get()); e.accept(BOOTS.get());
-            e.accept(CAPSULE.get()); e.accept(FUEL.get());
+            e.accept(CAPSULE.get()); e.accept(CAPSULE_DIAMOND.get()); e.accept(FUEL.get()); e.accept(FUEL_DIAMOND.get());
         }
     }
 }

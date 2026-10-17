@@ -21,5 +21,10 @@ public class TurboChestplateItem extends TurboArmorItem {
         tooltip.add(Component.translatable("tooltip.turboarmor.turbo").withStyle(net.minecraft.ChatFormatting.AQUA));
         tooltip.add(Component.translatable("tooltip.turboarmor.turbo2").withStyle(net.minecraft.ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.turboarmor.energy").withStyle(net.minecraft.ChatFormatting.DARK_AQUA));
+        int pending = TurboEnergy.getPending(stack);
+        if (pending > 0) {
+            tooltip.add(Component.translatable("tooltip.turboarmor.pending", String.format("%.1f", pending / 1000f))
+                    .withStyle(net.minecraft.ChatFormatting.LIGHT_PURPLE));
+        }
     }
 }

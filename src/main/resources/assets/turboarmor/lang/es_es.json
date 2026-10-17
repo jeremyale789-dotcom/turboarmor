@@ -13,10 +13,14 @@
   "key.categories.turboarmor": "Turbo Armor",
   "hud.turboarmor.ui_on": "Interfaz del casco: ACTIVADA",
   "hud.turboarmor.ui_off": "Interfaz del casco: DESACTIVADA",
-  "item.turboarmor.empty_capsule": "Cápsula vacía",
+  "item.turboarmor.empty_capsule": "Frasco vacío",
   "item.turboarmor.turbo_fuel": "Combustible Turbo",
-  "tooltip.turboarmor.fuel": "Recarga la energía de la pechera Turbo (+5.0).",
-  "tooltip.turboarmor.fuel2": "Mantén clic derecho con la pechera puesta. Devuelve la cápsula vacía.",
+  "tooltip.turboarmor.fuel": "Recarga +5.0 de energía a la Pechera Turbo.",
+  "tooltip.turboarmor.fuel2": "Ponlo en la mesa de crafteo junto a la pechera. El frasco se pierde.",
   "msg.turboarmor.need_chest": "Necesitas la Pechera Turbo puesta",
-  "msg.turboarmor.full": "La energía del turbo ya está llena"
+  "msg.turboarmor.full": "La energía del turbo ya está llena",
+  "item.turboarmor.empty_capsule_diamond": "Frasco de diamante vacío",
+  "item.turboarmor.turbo_fuel_diamond": "Combustible Turbo de diamante",
+  "tooltip.turboarmor.fuel_full": "Recarga POR COMPLETO la Pechera Turbo.",
+  "tooltip.turboarmor.pending": "Carga lista: +%s (se aplica al ponértela)"
 }
