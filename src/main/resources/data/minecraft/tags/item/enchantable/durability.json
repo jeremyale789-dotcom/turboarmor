@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "turboarmor:turbo_helmet",
+    "turboarmor:turbo_chestplate",
+    "turboarmor:turbo_leggings",
+    "turboarmor:turbo_boots"
+  ]
+}
